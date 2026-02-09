@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import TasksRouter from './src/routes/tasks.routes.js';
+import errorHandler from './src/middlewares/errorHandler.middleware.js';
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/tasks', TasksRouter);
+
+app.use(errorHandler);
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
