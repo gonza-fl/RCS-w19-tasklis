@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import TasksRouter from './src/routes/tasks.routes.js';
 import errorHandler from './src/middlewares/errorHandler.middleware.js';
+import bcrypt from 'bcryptjs';
 
 const app = express();
 
@@ -13,6 +14,13 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/tasks', TasksRouter);
+
+app.post('/hash-password', (req, res) => {
+  const { password } = req.body;
+  const salt = bcrypt.genSaltSync(12);
+  const hash = bcrypt.hashSync(password, salt);
+  res.json({ hash });
+})
 
 app.use(errorHandler);
 
