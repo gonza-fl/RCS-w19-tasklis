@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { listAllTasks, createTask, getTaskById, patchTaskById, deleteTaskById, restoreTaskById, recycleBin } from '../controllers/tasks.controllers.js';
 import { validateCreateTask, validateTaskId, validateUpdateTaskById } from '../middlewares/tasks.middleware.js';
+// import { auth } from '../middlewares/auth.middleware.js';
 
 const router = Router();
 

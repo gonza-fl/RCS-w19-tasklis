@@ -1,9 +1,9 @@
-import { NotFoundError } from '../errors/customError.js';
-import { Task } from "../models/Task.js"
-import { catchAsync } from '../utils.js';
+import { NotFoundError } from '../errors/customError.js'
+import { Task } from '../models/Task.js'
+import { catchAsync } from '../utils.js'
 
 const listAllTasks = catchAsync(async (req, res) => {
-    const { getRecycleBin } = req.query;
+    const { getRecycleBin } = req.query
     if (getRecycleBin === 'true') {
         return recycleBin(req, res)
     }
@@ -13,7 +13,7 @@ const listAllTasks = catchAsync(async (req, res) => {
 
 const getTaskById = catchAsync(async (req, res, next) => {
     const task = await Task.findById(req.params.id)
-    if (!task || task.deletedAt === null || task.deletedAt === undefined) {
+    if (!task || task.deletedAt) {
         next(new NotFoundError('Task not found'))
     }
     return res.status(200).json(task)
