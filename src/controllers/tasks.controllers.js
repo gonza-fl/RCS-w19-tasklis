@@ -1,6 +1,6 @@
 import { NotFoundError } from '../errors/customError.js'
 import { Task } from '../models/Task.js'
-import { catchAsync } from '../utils.js'
+import { catchAsync } from '../utils/catchAsync.js'
 
 const listAllTasks = catchAsync(async (req, res) => {
     const { getRecycleBin } = req.query
