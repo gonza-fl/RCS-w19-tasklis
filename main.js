@@ -8,21 +8,9 @@ import cors from 'cors';
 
 const app = express();
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
-const corsConfigs = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}
-
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors(corsConfigs));
+app.use(cors());
 
 app.get('/', (_req, res) => {
   res.send('Hello World!');

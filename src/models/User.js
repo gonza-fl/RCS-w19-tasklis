@@ -23,6 +23,10 @@ const userSchema = new Schema({
     trim: true,
     minLength: 6,
     // match: [/^((?=(.*\d){1}))((?=(.*[a-z]){1}))((?=(.*[A-Z]){1}))((?=(.*[\W_]){1}))(.{6,20})$/, 'Password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character']
+  },
+  isEmailConfirmed: {
+    type: Boolean,
+    default: false
   }
 }, {
   collection: 'users',
